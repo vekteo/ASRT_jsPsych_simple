@@ -8,23 +8,22 @@ Vékony, T. (2021). Alternating Serial Reaction Time Task created with jsPsych (
 
 <h2>About the task</h2>
 
-<p>In the task, four circles are presented on the screen horizontally. A target stimulus (a dog's head) appears in one of the four circles. The task of the user is to press the response key corresponding to the position of the target stimulus as fast and as accurately as they can.</p>
+In this task, four circles are displayed horizontally on the screen. A target stimulus, represented by an image of a dog's head, will appear in one of the circles. The user’s objective is to press the corresponding response key (either 's', 'f', 'j', or 'l') as quickly and accurately as possible based on the target’s position.
 
-<p>By default, the task begins with one block of practice with random trials (80 stimuli in each block). After that, 20 blocks of ASRT follow. Each block contains 10 repetitions of a randomly chosen 8-element sequence.</p>
+The task begins with a practice block consisting of 80 trials presented in random order. Following this, the main task consists of 20 blocks of the Alternating Serial Reaction Time (ASRT) paradigm. Each block includes 10 repetitions of a randomly chosen 8-element sequence.
 
-<p>The trials are images of dogs. The <strong>'s', 'f', 'j' and 'l'</strong> keys on the keyboard are set as response keys (corresponding to the four positions from left to right).</p>
+The trials involve different images of dogs, with the keys 's', 'f', 'j', and 'l' on the keyboard mapped to the four positions from left to right.
 
-<p>If a correct response is given, the next element is presented after a 120 ms response-to-stimulus interval. If the response is incorrect (but an active response key was pressed), the same target stimulus appears on the screen again with an interstimulus interval of 0 ms (i.e., remains on the screen).</p>
+If the user provides a correct response, the next stimulus appears after a 120 ms response-to-stimulus interval. If an incorrect response is given (but a valid response key is pressed), the same target stimulus reappears immediately with no delay (0 ms interstimulus interval).
 
-<p>Average performance (mean accuracy and mean RT) is presented as feedback after the end of the block with a personalized instruction:</p>
+At the end of each block, feedback is provided based on the user’s performance. This feedback includes average accuracy and response time (RT):
 
-- if the mean accuracy of the block is less than 90%, it instructs to be more accurate.
-- if the mean RT of the block is over 350 ms, it instructs to be faster.
-- in other cases, it instructs to continue the task.
+If the mean accuracy is below 90%, the user is prompted to focus on accuracy.
+If the mean response time exceeds 350 ms, the user is encouraged to respond faster.
+If both criteria are met, the user is advised to continue as before.
+Breaks between blocks are self-paced, and the user can resume the task by pressing any response key.
 
-<p>The breaks between the blocks are <strong>self-paced</strong>. The user can continue the task when they press a response key.</p>
-
-<p>After the end of the task, output data will be downloaded to the local machine (CSV format). If the user quits before the end of the task, the data will also be downloaded to the local machine.</p>
+Upon completing the task, output data is automatically downloaded in CSV format. If the user quits before completing the task, the data up to that point is still downloaded to the local machine.
 
 <h2>Output variables</h2>
 <ul>
