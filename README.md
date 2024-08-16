@@ -10,7 +10,7 @@ Vékony, T. (2021). Alternating Serial Reaction Time Task created with jsPsych (
 
 In this task, four circles are displayed horizontally on the screen. A target stimulus, represented by an image of a dog's head, will appear in one of the circles. The user’s objective is to press the corresponding response key (either 's', 'f', 'j', or 'l') as quickly and accurately as possible based on the target’s position.
 
-The task begins with a practice block consisting of 80 trials presented in random order. Following this, the main task consists of 20 blocks of the Alternating Serial Reaction Time (ASRT) paradigm. Each block includes 10 repetitions of a randomly chosen 8-element sequence.
+The task begins with two practice blocks consisting of 80 trials presented in random order. Following this, the main task consists of 30 blocks of the Alternating Serial Reaction Time (ASRT) paradigm. Each block includes 10 repetitions of a randomly chosen 8-element sequence.
 
 The trials involve different images of dogs, with the keys 's', 'f', 'j', and 'l' on the keyboard mapped to the four positions from left to right.
 
