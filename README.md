@@ -70,7 +70,7 @@ In the <i>parameters.js</i> file, several parameters can be modified by the user
 <li><strong>image:</strong> all images in an array which are to be preloaded</li>
 
 <h2>How to start the task</h2>
-Open the <i>index.html</i> file in the <i>main</i> folder.
+Open the <i>index.html</i> file.
 
 <h2>Browser requirements</h2>
 <p>Any browser except Safari and Internet Explorer. Recommended: Chrome.</p>
