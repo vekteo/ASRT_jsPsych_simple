@@ -62,7 +62,7 @@ In the <i>parameters.js</i> file, several parameters can be modified by the user
 <li><strong>nrBlocks:</strong> the number of learning blocks (besides the practice blocks)</li>
 <li><strong>nrTrials:</strong> the number of trials in the sequence</li>
 <li><strong>isWarningOn:</strong> a warning can be shown to the participants if their performance drops below 80% throughout the whole task (true/false)</li>
-<li><strong>responseKeys:</strong> the response keys</li>
+<li><strong>responseKeys:</strong> the response keys in an array</li>
 <li><strong>rsi:</strong> the response-to-stimulus interval after a button press (in ms)</li>
 <li><strong>initialDelay:</strong> the delay before the first trial of a block (in ms) </li>
 <li><strong>feedbackDuration:</strong> duration of the feedback at the end of the block (in ms)</li>
