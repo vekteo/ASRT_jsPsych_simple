@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ASRT</title>
+  <script src="settings.js"></script>
+  <script src="functions.js"></script>
+  <script src="trials.js"></script>
+  <script src="static/js/jspsych-6.1.0/jspsych.js"></script>
+  <script src="static/js/jspsych-6.1.0/plugins/jspsych-html-button-response.js"></script>
+  <script src="static/js/jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js"></script>
+  <script src="static/js/jspsych-6.1.0/plugins/jspsych-serial-reaction-time.js"></script>
+  <script src="static/js/jspsych-6.1.0/plugins/jspsych-instructions.js"></script>
+  <script src="static/js/jspsych-6.1.0/plugins/jspsych-fullscreen.js"></script>
+  <script src="static/js/jspsych-6.1.0/plugins/jspsych-survey-likert.js"></script>
+  <link rel="stylesheet" href="static/js/jspsych-6.1.0/css/jspsych.css">
+
+</head>
+<body>
+<script>
+  
+  // **************** INITIATE VARIABLES ****************
+
+  let subject_id = jsPsych.randomization.randomID(6);
+  let stimulus_array = [];
+  let pattern = [1, 2, 3, 4]; //default sequence - do not change it, it will be shuffled
+  let timeline = [];
+  let probabilities = [];
+    
+  let parameters = setParameters();
+  let variables = createTrials();
+
+  // **************** SELECT A SEQUENCE RANDOMLY ****************
+
+  pattern = shuffleArray(pattern);
+  console.log(pattern);
+
+  // **************** TIMELINE CREATION ****************
+
+  timeline.push({type: "fullscreen", fullscreen_mode: true});
+  timeline.push(variables.instruction)
+
+  // create random blocks
+  for (let randomBlock = 0; randomBlock < parameters.nrRandomBlocks; randomBlock++) {
+    let randomSequence = [];
+    randomSequence = createRandomSequence(parameters.nrTrials/4);
+    if (randomSequence.length > parameters.nrTrials) {
+        randomSequence = randomSequence.slice(0, parameters.nrTrials);
+    }
+
+    if (parameters.nrRandomBlocks > 1 && randomBlock > 0) {
+      timeline.push(variables.blockStart);
+    } else {
+      timeline.push(variables.practiceStart);
+    }
+
+    for (let i = 0; i < randomSequence.length; i++) {
+
+      let trialCopy = JSON.parse(JSON.stringify(variables.trial));
+      let trialRepeatCopy = JSON.parse(JSON.stringify(variables.trialRepeat));
+
+      if (i == 0) {
+        trialCopy.pre_target_duration = parameters.initialDelay;
+      }
+
+      trialCopy.target = [0, randomSequence[i] - 1];
+      trialCopy.data.correct_response = randomSequence[i];
+      trialCopy.data.triplet_type = "X";
+      trialCopy.data.trial_number = i + 1;
+      trialCopy.data.block_number = randomBlock + 1;
+      trialCopy.data.is_first_response = 1;
+      trialCopy.data.is_practice = 1;
+      trialRepeatCopy.target = [0, randomSequence[i] - 1];
+      trialRepeatCopy.data.correct_response = randomSequence[i];
+      trialRepeatCopy.data.triplet_type = "X";
+      trialRepeatCopy.data.trial_number = i + 1;
+      trialRepeatCopy.data.block_number = randomBlock + 1;
+      trialRepeatCopy.data.is_first_response = 0;
+      trialRepeatCopy.data.is_practice = 1;
+
+      let repeatTrial = {
+        timeline: [trialRepeatCopy],
+        conditional_function: function() {
+          if (jsPsych.data.get().last(1).values()[0].correct == false) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      }
+      timeline.push(trialCopy, ...Array(10).fill(repeatTrial));
+    }
+    timeline.push(variables.feedback);
+  }
+
+  // create ASRT blocks
+  for (let block = 0; block < parameters.nrBlocks; block++) {
+
+    probabilities = [];
+    stimulus_array = [];
+
+    if (block == 0) {
+      timeline.push(variables.realStart);
+    } else {
+      timeline.push(variables.blockStart);
+    }
+
+    createStimulusArray(parameters.nrTrials);
+    probabilities = createProbabilityArray(stimulus_array, pattern);
+    
+    for (let i = 0; i < stimulus_array.length; i++) {
+      let trialCopy = JSON.parse(JSON.stringify(variables.trial));
+      let trialRepeatCopy = JSON.parse(JSON.stringify(variables.trialRepeat));
+
+      if (i == 0) {
+        trialCopy.pre_target_duration = parameters.initialDelay;
+      }
+    
+      trialCopy.target = [0, stimulus_array[i] - 1];
+      trialCopy.data.correct_response = stimulus_array[i];
+      trialCopy.data.triplet_type = probabilities[i];
+      trialCopy.data.trial_number = i + 1;
+      trialCopy.data.block_number = block + 1;
+      trialCopy.data.is_first_response = 1;
+      trialCopy.data.is_practice = 0;
+      trialRepeatCopy.target = [0, stimulus_array[i] - 1];
+      trialRepeatCopy.data.correct_response = stimulus_array[i];
+      trialRepeatCopy.data.triplet_type = probabilities[i];
+      trialRepeatCopy.data.trial_number = i + 1;
+      trialRepeatCopy.data.block_number = block + 1;
+      trialRepeatCopy.data.is_first_response = 0;
+      trialRepeatCopy.data.is_practice = 0;
+      
+      let repeatTrial = {
+        timeline: [trialRepeatCopy],
+        conditional_function: function() {
+          if (jsPsych.data.get().last(1).values()[0].correct == false) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      }
+     timeline.push(trialCopy, ...Array(10).fill(repeatTrial));
+    }
+
+    if (parameters.isWarningOn == true && block != parameters.nrBlocks-1) {
+      timeline.push(variables.feedback, variables.warning)
+    }
+    else {
+      timeline.push(variables.feedback)
+    }
+  }
+  timeline.push(variables.end)
+
+  // **************** INITIALIZE JSPSYCH ****************
+
+  jsPsych.init({
+    timeline: timeline,
+    preload_images: parameters.images,
+    on_data_update: function() {
+      dataUpdate();
+      jsPsych.data.addProperties({sequence: pattern.join('')});
+    },
+    on_finish: function() {
+      jsPsych.data.get().localSave("csv", "ASRT_output.csv");
+    },
+    on_close: function() {
+      jsPsych.data.get().localSave("csv", "ASRT_quit_output.csv");
+    },
+    on_interaction_data_update: function(data) {
+      if (jsPsych.data.get().last(1).values()[0] != undefined) {
+        jsPsych.data.get().last(1).values()[0].interaction = JSON.stringify(data);
+      }
+    }
+  }
+);
+  
+</script>
+</body>
+</html>
