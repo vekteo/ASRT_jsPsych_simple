@@ -1,8 +1,4 @@
 # ASRT_jsPsych_simple
- 
-<i>Created by the MEMO Team of Lyon Neuroscience Research Center (CRNL) (PI: Dezso Nemeth)</i>
-
-<img src="static/logo_memo.png" height="100">
 
 <h2>Citation</h2>
 If you use the script, please include this citation in your manuscript:
