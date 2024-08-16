@@ -28,20 +28,20 @@ Upon completing the task, output data is automatically downloaded in CSV format.
 
 <h2>Output variables</h2>
 <ul>
-<li><strong>success:</strong> whether fullscreen mode was successfully started/ended (true or false)</li>
-<li><strong>trial_type:</strong> jsPsych trialtype of the given trial (fullscreen, instructions, html-keyboard-response or serial-reaction-time)</li>
-<li><strong>trial_index:</strong> the number of the given trials (all events considered, even instructions, feedback!)</li>
-<li><strong>time_elapsed:</strong> the time elapsed from the start of the script in ms</li>
-<li><strong>internal_code_id:</strong> internal node id of the trial</li>
-<li><strong>interaction:</strong> if browser interaction occured (e.g., change of focus, exit from fullscreen mode)</li>
-<li><strong>view_history:</strong> only relevant in the instructions; the actions and the corresponding RTs during the reading of the instructions</li>
-<li><strong>rt:</strong> reaction time (RT) in ms - in the case of first responses to the trial, it shows the rt calculated from the appearance of the stimulus; in the case of not first responses, it shows the rt calculated from the last keypress</li>
-<li><strong>stimulus:</strong> stimulus on the screen; relevant only if instructions/feedback are present</li>
-<li><strong>button_press:</strong> code if button was pressed</li>
-<li><strong>key_press:</strong> number code of the key pressed</li>
-<li><strong>correct:</strong> whether the response was correct (true or false)</li>
-<li><strong>grid:</strong> layout of the positions (in a grid)</li>
-<li><strong>target:</strong> position of the target stimulus (the 4 positions: 1: 0,0; 2: 0,1; 3: 0,2; 4: 0,3)</li>
+<li><strong>success:</strong> indicates whether fullscreen mode was successfully started/ended (true/false)</li>
+<li><strong>trial_type:</strong> the jsPsych trial type for the current trial (e.g., fullscreen, instructions, HTML-keyboard-response, or serial-reaction-time)</li>
+<li><strong>trial_index:</strong> the sequential number of the current trial, including all events such as instructions and feedback</li>
+<li><strong>time_elapsed:</strong> the time, in milliseconds, that has passed since the start of the script.</li>
+<li><strong>internal_code_id:</strong> the internal node id of the current trial</li>
+<li><strong>interaction:</strong> captures any browser interaction that occurred, such as a change of focus or exit from fullscreen mode</li>
+<li><strong>view_history:</strong> relevant only during instructions, detailing the actions taken and corresponding reaction times (RTs) while reading the instructions</li>
+<li><strong>rt:</strong> reaction time in milliseconds - for first responses, it measures RT from stimulus appearance; for subsequent responses, it measures RT from the last keypress.</li>
+<li><strong>stimulus:</strong> the stimulus displayed on the screen; relevant only for instructions or feedback.</li>
+<li><strong>button_press:</strong> the code associated with the button press (if a button was pressed)</li>
+<li><strong>key_press:</strong> the numerical code of the key pressed.</li>
+<li><strong>correct:</strong> indicates whether the response was correct (true/false)</li>
+<li><strong>grid:</strong> the layout of the positions in a grid format (in a grid)</li>
+<li><strong>target:</strong> the position of the target stimulus within the four positions (1: 0,0; 2: 0,1; 3: 0,2; 4: 0,3)</li>
 <li><strong>asrt_trial:</strong>if the trial was an ASRT trial, 1, otherwise 0</li>
 <li><strong>sequence:</strong> the sequence used during the task (assigned randomly at the beginning)</li>
 <li><strong>correct_response:</strong> the correct response position in the given trial</li>
