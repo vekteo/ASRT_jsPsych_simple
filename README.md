@@ -18,9 +18,10 @@ If the user provides a correct response, the next stimulus appears after a 120 m
 
 At the end of each block, feedback is provided based on the user’s performance. This feedback includes average accuracy and response time (RT):
 
-If the mean accuracy is below 90%, the user is prompted to focus on accuracy.
-If the mean response time exceeds 350 ms, the user is encouraged to respond faster.
-If both criteria are met, the user is advised to continue as before.
+<li>If the mean accuracy is below 90%, the user is prompted to focus on accuracy.</li>
+<li>If the mean response time exceeds 350 ms, the user is encouraged to respond faster.</li>
+<li>If both criteria are met, the user is advised to continue as before.</li>
+  
 Breaks between blocks are self-paced, and the user can resume the task by pressing any response key.
 
 Upon completing the task, output data is automatically downloaded in CSV format. If the user quits before completing the task, the data up to that point is still downloaded to the local machine.
