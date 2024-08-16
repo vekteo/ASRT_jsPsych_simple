@@ -46,8 +46,8 @@ Vékony, T. (2021). Alternating Serial Reaction Time Task created with jsPsych (
 <li><strong>sequence:</strong> the sequence used during the task (assigned randomly at the beginning)</li>
 <li><strong>correct_response:</strong> the correct response position in the given trial</li>
 <li><strong>triplet_type:</strong> the type of the triplet (high-probability triplet: H; low-probability triplet: L, first trials: X, trill: T, repetition: T)</li>
-<li><strong>trial_number:</strong> number of the trial within the block (1-85)</li>
-<li><strong>block_number:</strong> number of the block (1-20)</li>
+<li><strong>trial_number:</strong> number of the trial within the block</li>
+<li><strong>block_number:</strong> number of the block </li>
 <li><strong>is_first_response:</strong> if the answer is the first answer to the given trial (yes: 1; no: 0)</li>
 <li><strong>is_practice:</strong> whether it was a practice trial (yes: 1; 0: no)</li>
 <li><strong>correct_key:</strong> the response key that should be pressed to respond correctly ('s', 'f', 'j' or 'l')</li>
