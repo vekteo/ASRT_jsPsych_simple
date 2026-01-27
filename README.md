@@ -1,4 +1,4 @@
-# ASRT_jsPsych_simple
+# Alternating Serial Reaction Time (ASRT) task version 2.0
 
 This repository contains a streamlined implementation of the **Alternating Serial Reaction Time (ASRT)** task using the **jsPsych** library.
 
