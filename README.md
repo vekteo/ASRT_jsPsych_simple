@@ -1,76 +1,71 @@
 # ASRT_jsPsych_simple
 
-<h2>Citation</h2>
-If you use the script, please include this citation in your manuscript:
+This repository contains a streamlined implementation of the **Alternating Serial Reaction Time (ASRT)** task using the **jsPsych** library.
 
-Vékony, T. (2021). Alternating Serial Reaction Time Task created with jsPsych (Version 1.0.0) [Computer software]. https://doi.org/10.5281/zenodo.7124730
-<a href="https://zenodo.org/badge/latestdoi/258316160"><img src="https://zenodo.org/badge/258316160.svg" alt="DOI"></a>
+---
 
-<h2>About the task</h2>
+## 📜 Citation
 
-In this task, four circles are displayed horizontally on the screen. A target stimulus, represented by an image of a dog's head, will appear in one of the circles. The user’s objective is to press the corresponding response key (either 's', 'f', 'j', or 'l') as quickly and accurately as possible based on the target’s position.
+If you utilize this script in your research, please include the following citation in your manuscript:
 
-The task begins with two practice blocks consisting of 80 trials presented in random order. Following this, the main task consists of 30 blocks of the Alternating Serial Reaction Time (ASRT) paradigm. Each block includes 10 repetitions of a randomly chosen 8-element sequence.
+> Vékony, T. (2021). Alternating Serial Reaction Time Task created with jsPsych (Version 1.0.0) [Computer software]. https://doi.org/10.5281/zenodo.7124730
 
-The trials involve different images of dogs, with the keys 's', 'f', 'j', and 'l' on the keyboard mapped to the four positions from left to right.
+---
 
-If the user provides a correct response, the next stimulus appears after a 120 ms response-to-stimulus interval. If an incorrect response is given (but a valid response key is pressed), the same target stimulus reappears immediately with no delay (0 ms interstimulus interval).
+## 🧠 About the Task
 
-At the end of each block, feedback is provided based on the user’s performance. This feedback includes average accuracy and response time (RT):
+In this task, four circles are displayed horizontally on the screen. A target stimulus, represented by an image of a dog's head, appears in one of the circles. The user’s objective is to press the corresponding response key as quickly and accurately as possible based on the target’s position.
 
-<li>If the mean accuracy is below 90%, the user is prompted to focus on accuracy.</li>
-<li>If the mean response time exceeds 350 ms, the user is encouraged to respond faster.</li>
-<li>If both criteria are met, the user is advised to continue as before.</li>
-  
-Breaks between blocks are self-paced, and the user can resume the task by pressing any response key.
 
-Upon completing the task, output data is automatically downloaded in CSV format. If the user quits before completing the task, the data up to that point is still downloaded to the local machine.
 
-<h2>Output variables</h2>
-<ul>
-<li><strong>success:</strong> indicates whether fullscreen mode was successfully started/ended (true/false)</li>
-<li><strong>trial_type:</strong> the jsPsych trial type for the current trial (e.g., fullscreen, instructions, HTML-keyboard-response, or serial-reaction-time)</li>
-<li><strong>trial_index:</strong> the sequential number of the current trial, including all events such as instructions and feedback</li>
-<li><strong>time_elapsed:</strong> the time, in milliseconds, that has passed since the start of the script.</li>
-<li><strong>internal_code_id:</strong> the internal node id of the current trial</li>
-<li><strong>interaction:</strong> captures any browser interaction that occurred, such as a change of focus or exit from fullscreen mode</li>
-<li><strong>view_history:</strong> relevant only during instructions, detailing the actions taken and corresponding reaction times (RTs) while reading the instructions</li>
-<li><strong>rt:</strong> reaction time in milliseconds - for first responses, it measures RT from stimulus appearance; for subsequent responses, it measures RT from the last keypress.</li>
-<li><strong>stimulus:</strong> the stimulus displayed on the screen; relevant only for instructions or feedback.</li>
-<li><strong>button_press:</strong> the code associated with the button press (if a button was pressed)</li>
-<li><strong>key_press:</strong> the numerical code of the key pressed.</li>
-<li><strong>correct:</strong> indicates whether the response was correct (true/false)</li>
-<li><strong>grid:</strong> the layout of the positions in a grid format (in a grid)</li>
-<li><strong>target:</strong> the position of the target stimulus within the four positions (1: 0,0; 2: 0,1; 3: 0,2; 4: 0,3)</li>
-<li><strong>asrt_trial:</strong>if the trial was an ASRT trial, 1, otherwise 0</li>
-<li><strong>sequence:</strong> the sequence used during the task (assigned randomly at the beginning)</li>
-<li><strong>correct_response:</strong> the correct response position in the given trial</li>
-<li><strong>triplet_type:</strong> the type of the triplet (high-probability triplet: H; low-probability triplet: L, first trials: X, trill: T, repetition: T)</li>
-<li><strong>trial_number:</strong> number of the trial within the block</li>
-<li><strong>block_number:</strong> number of the block </li>
-<li><strong>is_first_response:</strong> if the answer is the first answer to the given trial (yes: 1; no: 0)</li>
-<li><strong>is_practice:</strong> whether it was a practice trial (yes: 1; 0: no)</li>
-<li><strong>correct_key:</strong> the response key that should be pressed to respond correctly ('s', 'f', 'j' or 'l')</li>
-<li><strong>accuracy:</strong> accuracy coded numerically (correct: 1, false: 0)</li>
-<li><strong>cumulative_RT:</strong> the RT from the beginning of the first appeareance of the trial in ms</li>
-<li><strong>actual_triplet:</strong> the triplet to what response was given (three digits indicating the positions of the target stimulus in the last three trials)</li>
-<li><strong>r_or_p:</strong> random or pattern stimulus (R or P)</li>
+### Task Procedure
+* **Practice Phase**: Begins with two practice blocks consisting of 80 trials presented in random order.
+* **Main Task**: Consists of 30 blocks of the ASRT paradigm. Each block includes 10 repetitions of a randomly chosen 8-element sequence.
+* **Controls**: The keys **'s'**, **'f'**, **'j'**, and **'l'** are mapped to the four positions from left to right.
+* **Trial Logic**:
+    * **Correct Response**: The next stimulus appears after a 120 ms response-to-stimulus interval.
+    * **Incorrect Response**: The same target stimulus reappears immediately with no delay (0 ms interstimulus interval).
+* **Feedback & Breaks**:
+    * Performance feedback (average accuracy and RT) is shown after each block.
+    * Users are prompted to focus on accuracy if mean accuracy is **< 90%**.
+    * Users are encouraged to respond faster if mean RT exceeds **350 ms**.
+    * Breaks between blocks are self-paced, and the task resumes upon pressing any response key.
 
-<h2>Settings</h2>
-In the <i>parameters.js</i> file, several parameters can be modified by the user:
-<li><strong>nrRandomBlocks:</strong> the number of practice blocks at the beginning</li>
-<li><strong>nrBlocks:</strong> the number of learning blocks (besides the practice blocks)</li>
-<li><strong>nrTrials:</strong> the number of trials in the sequence</li>
-<li><strong>isWarningOn:</strong> a warning can be shown to the participants if their performance drops below 80% throughout the whole task (true/false)</li>
-<li><strong>responseKeys:</strong> the response keys in an array</li>
-<li><strong>rsi:</strong> the response-to-stimulus interval after a button press (in ms)</li>
-<li><strong>initialDelay:</strong> the delay before the first trial of a block (in ms) </li>
-<li><strong>feedbackDuration:</strong> duration of the feedback at the end of the block (in ms)</li>
-<li><strong>targetImage:</strong> the image used for ASRT trials</li>
-<li><strong>image:</strong> all images in an array which are to be preloaded</li>
+---
 
-<h2>How to start the task</h2>
-Open the <i>index.html</i> file.
+## 📊 Output Variables
 
-<h2>Browser requirements</h2>
-<p>Any browser except Safari and Internet Explorer. Recommended: Chrome.</p>
+Data is automatically downloaded in **CSV format** upon completion or if the user exits early. Key variables include:
+
+| Variable | Description |
+| :--- | :--- |
+| `subject` | Unique 15-character random ID or customized subject number. |
+| `rt` | Reaction time in ms (from stimulus appearance for first responses; from last keypress for subsequent responses). |
+| `cumulative_RT` | The RT from the beginning of the first appearance of the trial in ms. |
+| `correct` | Whether the response was correct (`true`/`false`). |
+| `r_or_p` | Indicates if the stimulus was Random (**R**) or Pattern (**P**). |
+| `triplet_type` | Categorizes the triplet (e.g., **H** for high-probability, **L** for low-probability, **X** for first trials). |
+| `actual_triplet` | Three digits indicating the positions of the target stimulus in the last three trials. |
+| `block_number` | Number of the block (1–30). |
+| `is_practice` | Whether the trial belonged to a practice block (`1` = yes, `0` = no). |
+
+---
+
+## ⚙️ Settings
+
+Users can modify experimental parameters within the `parameters.js` file:
+
+* **nrRandomBlocks**: Number of initial practice blocks.
+* **nrBlocks**: Number of ASRT learning blocks.
+* **rsi**: The response-to-stimulus interval in milliseconds.
+* **isWarningOn**: Toggles a warning if overall performance drops below 80%.
+* **targetImage**: Specify the image used for the ASRT trials.
+
+---
+
+## 🚀 Getting Started
+
+### Running the Task
+* Open the `index.html` file.
+* **Recommended Browser**: Google Chrome.
+* **Incompatible Browsers**: Safari and Internet Explorer.
